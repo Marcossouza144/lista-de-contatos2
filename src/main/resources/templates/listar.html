@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+
+	<title>Cadastro de Dados </title>
+
+	<link rel="stylesheet" th:href="@{/css/estilo.css}" />
+
+</head>
+
+<body>
+	<div class="links">
+	<a class="link1" th:href="@{/}">Inicio</a>
+	<a class="link2" th:href="@{/cadastro}">Cadastro</a>
+	</div>
+	<header>
+	
+		<h1>Contatos</h1>
+
+	</header>
+
+	<main>
+		<section>
+			<h1>Lista contatos</h1>
+		</section>
+
+		<section>
+			<table>
+				<thead>
+					<tr>
+						
+						<th>Usuário</th>
+						<th>Apelido</th>
+						<th>Telefone</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="contatosWeb: ${contatosWebs}">
+						
+						<td th:text="${contatosWeb.usuario}"></td>
+						<td th:text="${contatosWeb.apelido}"></td>
+						<td th:text="${contatosWeb.telefone}"></td>
+						<td>
+							
+							<form th:action="@{/listar/delete}" th:method="post">
+								<input type="hidden" name="id" th:value="${contatosWeb.id}" />
+								<button type="submit">Remover</button>
+								<a th:href="@{/}">Editar</a>
+								
+							</form>
+
+
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</section>
+	</main>
+</body>
+
+</html>

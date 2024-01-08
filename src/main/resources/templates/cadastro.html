@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Cadastro de Dados</title>
+	<link rel="stylesheet" th:href="@{/css/cadastro.css}" />
+</head>
+
+<body>
+
+
+	<main>
+		<section>
+			<a class="link1" th:href="@{/}"> ❮ </a>
+			<h1>Lista de Contatos</h1>
+		</section>
+
+		<section>
+			<form th:action="@{/listar}" th:method="post">
+				<label for="usuario">Usuário:</label>
+				<input type="usuario" id="usuario" name="usuario" required />
+
+				<label for="apelido">Apelido:</label>
+				<input type="apelido" id="apelido" name="apelido" required />
+
+				<label for="telefone">Telefone:</label>
+				<input id="telefone" name="telefone" rows="4" required></input>
+
+
+				<button type="submit">Salvar</button>
+				
+			</form>
+			
+		</section>                                            
