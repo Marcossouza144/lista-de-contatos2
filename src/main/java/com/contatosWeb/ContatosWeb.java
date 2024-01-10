@@ -16,11 +16,7 @@ public class ContatosWeb {
 		
 	}
 	
-	public boolean isNovo () {
-		return id == null;
-	}
-	
-	public ContatosWeb ( String id, String usuario, String apelido, String telefone) {
+	public ContatosWeb (String id,String usuario,String apelido, String telefone ) {
 		
 		this.id = id;
 		this.usuario = usuario;
@@ -28,9 +24,18 @@ public class ContatosWeb {
 		this.telefone = telefone;
 		
 	}
-
+	
+	
+	public boolean isNovo() {
+		
+	    return id == null;
+	    
+	}
+	
 	public String getId() {
+		
 		return id;
+		
 	}
 
 	public void setId(String id) {
@@ -60,5 +65,5 @@ public class ContatosWeb {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
+
 }

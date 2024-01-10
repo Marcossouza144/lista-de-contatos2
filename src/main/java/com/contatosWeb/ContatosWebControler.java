@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 
 public class ContatosWebControler {
 
+
 	private static final ArrayList<ContatosWeb> CONTATOS_WEB = new ArrayList<ContatosWeb>();
 
-	static {
+    static {
 
-		CONTATOS_WEB.add(new ContatosWeb("1", "Marcos", "Souza", "+55 11 98646 3833"));
-		CONTATOS_WEB.add(new ContatosWeb("2", "Ana Silva", "AnaS", "+55 11 98765 4321"));
-		CONTATOS_WEB.add(new ContatosWeb("3", "Carlos Oliveira", "Carlito", "+55 21 91234 5678"));
-		CONTATOS_WEB.add(new ContatosWeb("4", "Sofia Mendes", "Sofi", "+55 31 87654 3210"));
-		CONTATOS_WEB.add(new ContatosWeb("5", "Pedro Rocha", "PDR", "+55 41 89012 3456"));
-		CONTATOS_WEB.add(new ContatosWeb("6", "Mariana Costa", "MariC", "+55 11 94567 8901"));
-		CONTATOS_WEB.add(new ContatosWeb("7", "Rafaela Santos", "Rafa", "+55 21 87654 3210"));
-		CONTATOS_WEB.add(new ContatosWeb("8", "Lucas Pereira", "LucasP", "+55 31 95432 6789"));
+        CONTATOS_WEB.add(new ContatosWeb("1", "Marcos", "Souza", "+55 11 98646 3833"));
+        CONTATOS_WEB.add(new ContatosWeb("2", "Ana Silva", "AnaS", "+55 11 98765 4321"));
+        CONTATOS_WEB.add(new ContatosWeb("3", "Carlos Oliveira", "Carlito", "+55 21 91234 5678"));
+        CONTATOS_WEB.add(new ContatosWeb("4", "Sofia Mendes", "Sofi", "+55 31 87654 3210"));
+        CONTATOS_WEB.add(new ContatosWeb("5", "Pedro Rocha", "PDR", "+55 41 89012 3456"));
+        CONTATOS_WEB.add(new ContatosWeb("6", "Mariana Costa", "MariC", "+55 11 94567 8901"));
+        CONTATOS_WEB.add(new ContatosWeb("7", "Rafaela Santos", "Rafa", "+55 21 87654 3210"));
+        CONTATOS_WEB.add(new ContatosWeb("8", "Lucas Pereira", "LucasP", "+55 31 95432 6789"));
 
-	}
-
+    }
+	
 	@GetMapping("/")
 	public String index() {
 
@@ -35,8 +35,8 @@ public class ContatosWebControler {
 
 	}
 
-	@GetMapping("/cadastro")
-	public ModelAndView cadastros() {
+	@GetMapping ("/contato")
+	public ModelAndView cadastro() {
 
 		ModelAndView modelandview = new ModelAndView("cadastro");
 
@@ -45,8 +45,8 @@ public class ContatosWebControler {
 		return modelandview;
 	}
 
-	@GetMapping("/listar")
-	public ModelAndView exemplosDeCadastros() {
+	@GetMapping("/listaDeContatos")
+	public ModelAndView listaDeContatos() {
 
 		ModelAndView modelandview = new ModelAndView("listar");
 
@@ -55,7 +55,7 @@ public class ContatosWebControler {
 		return modelandview;
 	}
 
-	@PostMapping("/listar")
+	@PostMapping("/cadastro")
 	public String cadastrarContato(ContatosWeb contatosWeb) {
 	    // 1. Gera um ID único usando UUID
 	    String id = UUID.randomUUID().toString();
@@ -67,17 +67,99 @@ public class ContatosWebControler {
 	    CONTATOS_WEB.add(contatosWeb);
 
 	    // 4. Retorna um redirecionamento para a página de listagem
-	    return "redirect:/listar";
+	    return "redirect:/listaDeContatos";
 	}
 
+	
+	
 	@PostMapping("/listar/delete")
 	public String remover(@RequestParam String id) {
+		
 		if (!CONTATOS_WEB.isEmpty()) {
+			
 			CONTATOS_WEB.removeIf(contato -> contato.getId().equals(id));
 
 		}
 
-		return "redirect:/listar";
+		return "redirect:/listaDeContatos";
 
 	}
+	
+	@GetMapping ("/contato/{id}")
+	public ModelAndView editar (@PathVariable String id) {
+		ModelAndView modelandview = new ModelAndView("cadastro");
+		
+		ContatosWeb contatosWeb = procurarContato(id);
+		
+		modelandview.addObject("contato", contatosWeb);
+		return modelandview;
+		
+	}
+	
+	
+//	@PutMapping ("/cadastro")
+//	public String atualizar (@RequestParam ContatosWeb contato) {
+//		ModelAndView modelandview = new ModelAndView ("cadastro");
+//		
+//		for(ContatosWeb c : CONTATOS_WEB){
+//	        if (c == c.getId())
+//	            System.out.println(c);
+//	        }
+//		
+//		if(CONTATOS_WEB.equals(contato.getUsuario())) {
+//		
+//			contato.setUsuario(contato.getUsuario());
+//			
+//			
+//			CONTATOS_WEB.add(contato);
+//			
+//			
+//			
+//		}
+		
+//		modelandview.addObject("contato", contato);
+//		System.out.println(contato.getId());
+//		return "redirect:/listar";
+//	}
+	
+	private ContatosWeb procurarContato(String id) {
+		Integer indice = procurarIndiceContato(id);
+		
+		if (indice != null) {
+			ContatosWeb contato = CONTATOS_WEB.get(indice);
+			return contato;
+		}
+		
+		return null;
+	}
+	
+	private Integer procurarIndiceContato(String id) {
+		
+		for (int i = 0; i < CONTATOS_WEB.size(); i++) {
+			
+			ContatosWeb contatosWeb = CONTATOS_WEB.get(i);
+			
+			if (contatosWeb.getId().equals(id)) {
+				return i;
+			}
+		}
+		
+		return null;
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
