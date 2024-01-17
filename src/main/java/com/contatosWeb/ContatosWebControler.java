@@ -41,9 +41,9 @@ public class ContatosWebControler {
 		ModelAndView modelandview = new ModelAndView("cadastro");
 
 		modelandview.addObject("contatosWeb", new ContatosWeb());
-
 		
 		return modelandview;
+		
 	}
 
 	@GetMapping("/listaDeContatos")
@@ -58,20 +58,16 @@ public class ContatosWebControler {
 
 	@PostMapping("/cadastro")
 	public String cadastrarContato(ContatosWeb contatosWeb) {
-	    // 1. Gera um ID único usando UUID
+		
 	    String id = UUID.randomUUID().toString();
 
-	    // 2. Define o ID gerado para o objeto contatosWeb
 	    contatosWeb.setId(id);
 
-	    // 3. Adiciona o objeto contatosWeb à lista CONTATOS_WEB
 	    CONTATOS_WEB.add(contatosWeb);
 
-	    // 4. Retorna um redirecionamento para a página de listagem
 	    return "redirect:/listaDeContatos";
+	    
 	}
-
-	
 	
 	@PostMapping("/listar/delete")
 	public String remover(@RequestParam String id) {
@@ -88,42 +84,32 @@ public class ContatosWebControler {
 	
 	@GetMapping ("/contato/{id}")
 	public ModelAndView editar (@PathVariable String id) {
+		
 		ModelAndView modelandview = new ModelAndView("cadastro");
 		
-		ContatosWeb contatosWeb = procurarContato(id);
+		ContatosWeb contatosWeb = procurarIndiceContato(id);
 		
 		modelandview.addObject("contato", contatosWeb);
+		
 		return modelandview;
 		
 	}
 	
-	
-
-	
-	private ContatosWeb procurarContato(String id) {
-		Integer indice = procurarIndiceContato(id);
+	private ContatosWeb procurarIndiceContato(String id) {
 		
-		if (indice != null) {
-			ContatosWeb contato = CONTATOS_WEB.get(indice);
-			return contato;
-		}
-		
-		return null;
-	}
-	
-	private Integer procurarIndiceContato(String id) {
-		
-		for (int i = 0; i < CONTATOS_WEB.size(); i++) {
+		for (int i = 0 ; i < CONTATOS_WEB.size(); i++) {
 			
-			ContatosWeb contatosWeb = CONTATOS_WEB.get(i);
-			
-			if (contatosWeb.getId().equals(id)) {
-				return i;
+			ContatosWeb contatosweb = CONTATOS_WEB.get(i);
+		
+			if (contatosweb.getId().equals(id)) {
+				
+				return contatosweb;
+				
 			}
+			
 		}
 		
 		return null;
+		
 	}
-	
-	
 }

@@ -8,6 +8,15 @@ main {
     margin-top: 10px;
 }
 
+main, sectio, h1{
+	color: #bdc3c7;
+}
+
+.link1, a {
+	color: #3498db;
+	text-align: center;
+}
+
 form {
     margin-bottom: 10px;
     
