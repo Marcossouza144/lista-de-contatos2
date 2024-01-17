@@ -36,7 +36,7 @@ public class ContatosWebControler {
 	}
 
 	@GetMapping ("/contato")
-	public ModelAndView cadastro() {
+	public ModelAndView register() {
 
 		ModelAndView modelandview = new ModelAndView("cadastro");
 
@@ -47,7 +47,7 @@ public class ContatosWebControler {
 	}
 
 	@GetMapping("/listaDeContatos")
-	public ModelAndView listaDeContatos() {
+	public ModelAndView listofContact() {
 
 		ModelAndView modelandview = new ModelAndView("listar");
 
@@ -57,7 +57,7 @@ public class ContatosWebControler {
 	}
 
 	@PostMapping("/cadastro")
-	public String cadastrarContato(ContatosWeb contatosWeb) {
+	public String addContact(ContatosWeb contatosWeb) {
 		
 	    String id = UUID.randomUUID().toString();
 
@@ -70,7 +70,7 @@ public class ContatosWebControler {
 	}
 	
 	@PostMapping("/listar/delete")
-	public String remover(@RequestParam String id) {
+	public String remove(@RequestParam String id) {
 		
 		if (!CONTATOS_WEB.isEmpty()) {
 			
@@ -83,11 +83,11 @@ public class ContatosWebControler {
 	}
 	
 	@GetMapping ("/contato/{id}")
-	public ModelAndView editar (@PathVariable String id) {
+	public ModelAndView edit (@PathVariable String id) {
 		
 		ModelAndView modelandview = new ModelAndView("cadastro");
 		
-		ContatosWeb contatosWeb = procurarIndiceContato(id);
+		ContatosWeb contatosWeb = searchContact(id);
 		
 		modelandview.addObject("contato", contatosWeb);
 		
@@ -95,7 +95,7 @@ public class ContatosWebControler {
 		
 	}
 	
-	private ContatosWeb procurarIndiceContato(String id) {
+	private ContatosWeb searchContact (String id) {
 		
 		for (int i = 0 ; i < CONTATOS_WEB.size(); i++) {
 			
