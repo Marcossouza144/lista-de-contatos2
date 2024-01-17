@@ -47,7 +47,7 @@ public class ContatosWebControler {
 	}
 
 	@GetMapping("/listaDeContatos")
-	public ModelAndView listofContact() {
+	public ModelAndView contactList() {
 
 		ModelAndView modelandview = new ModelAndView("listar");
 
