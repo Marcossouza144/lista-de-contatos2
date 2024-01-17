@@ -42,6 +42,7 @@ public class ContatosWebControler {
 
 		modelandview.addObject("contatosWeb", new ContatosWeb());
 
+		
 		return modelandview;
 	}
 
@@ -97,30 +98,7 @@ public class ContatosWebControler {
 	}
 	
 	
-//	@PutMapping ("/cadastro")
-//	public String atualizar (@RequestParam ContatosWeb contato) {
-//		ModelAndView modelandview = new ModelAndView ("cadastro");
-//		
-//		for(ContatosWeb c : CONTATOS_WEB){
-//	        if (c == c.getId())
-//	            System.out.println(c);
-//	        }
-//		
-//		if(CONTATOS_WEB.equals(contato.getUsuario())) {
-//		
-//			contato.setUsuario(contato.getUsuario());
-//			
-//			
-//			CONTATOS_WEB.add(contato);
-//			
-//			
-//			
-//		}
-		
-//		modelandview.addObject("contato", contato);
-//		System.out.println(contato.getId());
-//		return "redirect:/listar";
-//	}
+
 	
 	private ContatosWeb procurarContato(String id) {
 		Integer indice = procurarIndiceContato(id);
@@ -146,20 +124,6 @@ public class ContatosWebControler {
 		
 		return null;
 	}
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }
