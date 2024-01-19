@@ -36,7 +36,7 @@ public class ContatosWebControler {
 		
 	}
 
-	@GetMapping ("/contato")
+	@GetMapping ("/contact")
 	public ModelAndView register() {
 
 		ModelAndView modelandview = new ModelAndView("cadastro");
@@ -47,7 +47,7 @@ public class ContatosWebControler {
 		
 	}
 
-	@GetMapping("/listaDeContatos")
+	@GetMapping("/listContact")
 	public ModelAndView contactList() {
 
 		ModelAndView modelandview = new ModelAndView("listar");
@@ -57,7 +57,7 @@ public class ContatosWebControler {
 		return modelandview;
 	}
 
-	@PostMapping("/cadastro")
+	@PostMapping("/register")
 	public String addContact(ContatosWeb contatosWeb) {
 		
 	    String id = UUID.randomUUID().toString();
@@ -79,11 +79,11 @@ public class ContatosWebControler {
 
 		}
 
-		return "redirect:/listaDeContatos";
+		return "redirect:/listContact";
 
 	}
 	
-	@GetMapping ("/contato/{id}")
+	@GetMapping ("/contact/{id}")
 	public ModelAndView edit (@PathVariable String id) {
 		
 		ModelAndView modelandview = new ModelAndView("cadastro");

@@ -13,13 +13,13 @@
 
 	<main>
 		<section>
-			<a class="link1" th:href="@{/listaDeContatos}"> Inicio </a>
+			<a class="link1" th:href="@{/listContact}"> Inicio </a>
 			<h1>Lista de Contatos</h1>
 		</section>
 
 		<section>
 			
-			<form th:action="@{/contato}" th:object="${contato}" th:method="${contato.novo} ? 'post' : 'put'">
+			<form th:action="@{/contact}" th:object="${contato}" th:method="${contato.novo} ? 'post' : 'put'">
 
 				<label for="usuario">Usuário:</label>
 				<input type="usuario" id="usuario" th:value="${contato.usuario}" name="usuario" required />
