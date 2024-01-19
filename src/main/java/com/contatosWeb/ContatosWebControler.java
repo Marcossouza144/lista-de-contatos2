@@ -66,7 +66,7 @@ public class ContatosWebControler {
 
 	    CONTATOS_WEB.add(contatosWeb);
 
-	    return "redirect:/listaDeContatos";
+	    return "redirect:/listContact";
 	    
 	}
 	
