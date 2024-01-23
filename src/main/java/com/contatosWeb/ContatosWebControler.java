@@ -30,7 +30,7 @@ public class ContatosWebControler {
 	@GetMapping("/")
 	public String index() {
 
-		return "index";
+		return "index";  
 
 	}
 
