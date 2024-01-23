@@ -1,9 +1,12 @@
 a {
 	text-decoration: none;
-	color: black;
+	color: rgb(0, 128, 255);
 
 }
 li {
 		margin: 20px;
 
+}
+body {
+	background-color: black;
 }

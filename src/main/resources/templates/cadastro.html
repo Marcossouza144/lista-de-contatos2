@@ -13,26 +13,39 @@
 
 	<main>
 		<section>
-			<a class="link1" th:href="@{/listaDeContatos}"> Inicio </a>
+			<a class="link1" th:href="@{/contactList}"> Inicio </a>
 			<h1>Lista de Contatos</h1>
 		</section>
 
 		<section>
-			
-			<form th:action="@{/contato}" th:object="${contato}" th:method="${contato.novo} ? 'post' : 'put'">
-
-				<label for="usuario">Usuário:</label>
-				<input type="usuario" id="usuario" th:value="${contato.usuario}" name="usuario" required />
-
-				<label for="apelido">Apelido:</label>
-				<input type="apelido" id="apelido" th:value="${contato.apelido}" name="apelido" required />
-
-				<label for="telefone">Telefone:</label>
-				<input id="telefone" name="telefone" th:value="${contato.telefone}" rows="4" required></input>
+			<form th:action="${ContatosWeb.novo} ? @{/contactList} : @{/contactList/{ContatosWeb}(ContatosWeb=${ContatosWeb.id})}" 
+				th:object="${ContatosWeb}" th:method="${ContatosWeb.novo} ? post : put">
 
 
-				<button type="submit">Salvar</button>
-				
+				<div th:if="${!ContatosWeb.novo}">
+					<label>Código:</label>
+					<input th:field="*{id}" readonly="readonly"  />
+				</div>
+
+				<div>
+					<label>Nome:</label>
+					<input th:field="*{usuario}" />
+				</div>
+
+				<div>
+					<label>Apelido:</label> <!-- Corrigindo o rótulo para "Apelido" -->
+					<input th:field="*{apelido}" />
+				</div>
+
+				<div>
+					<label>Telefone:</label>
+					<input th:field="*{telefone}"  />
+				</div>
+
+				<div>
+					<button>Salvar</button>
+				</div>
 			</form>
-			
-		</section>                                            
+
+
+		</section>

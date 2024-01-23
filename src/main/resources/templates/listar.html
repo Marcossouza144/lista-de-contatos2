@@ -15,7 +15,7 @@
 <body>
 	<div class="links">
 		<a class="link1" th:href="@{/}">Inicio</a>
-		<a class="link2" th:href="@{/contato}">Cadastro</a>
+		<a class="link2" th:href="@{/contact}">Cadastro</a>
 	</div>
 	<header>
 
@@ -41,21 +41,21 @@
 				</thead>
 
 				<tbody>
-					<tr th:each="contatosWeb: ${contatosWebs}">
+					<tr th:each="ContatosWeb: ${ContatosWebs}">
 
-						<td th:text="${contatosWeb.usuario}"></td>
-						<td th:text="${contatosWeb.apelido}"></td>
-						<td th:text="${contatosWeb.telefone}"></td>
+						<td th:text="${ContatosWeb.usuario}"></td>
+						<td th:text="${ContatosWeb.apelido}"></td>
+						<td th:text="${ContatosWeb.telefone}"></td>
 						<td>
 
-							<form th:action="@{/listar/delete}" th:method="post">
-								<input type="hidden" name="id" th:value="${contatosWeb.id}" />
+							<form th:action="@{/list/delete}" th:method="post">
+								<input type="hidden" name="id" th:value="${ContatosWeb.id}" />
 								<button type="submit">Remover</button>
 
 
 							</form>
 							
-							 <a th:href="@{'/contato/'+${contatosWeb.id}}" >Editar</a>
+							 <a th:href="@{/contact/{ContatosWeb}(ContatosWeb=${ContatosWeb.id})}" >Editar</a>
 						</td>
 					</tr>
 
